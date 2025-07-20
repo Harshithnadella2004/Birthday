@@ -67,12 +67,30 @@
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
     }
+
+    #startBtn {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
 
+  <!-- START BUTTON -->
+  <button id="startBtn">Tap to Begin the Surprise 💖</button>
+
   <!-- HACKING SIMULATION SCREEN -->
-  <div class="screen" id="hacking-screen">
+  <div class="screen" id="hacking-screen" style="display: none;">
     <div id="hacking-lines"></div>
   </div>
 
@@ -87,15 +105,17 @@
       <img src="https://birthdaywish.blob.core.windows.net/birthday/siri3.jpg" alt="Photo 3">
     </div>
 
-    <video class="birthday-video" id="video" controls autoplay muted>
-      <source src="https://birthdaywish.blob.core.windows.net/birthday/siri4.mp4" muted type="video/mp4">
+    <video class="birthday-video" id="video" controls autoplay>
+      <source src="https://birthdaywish.blob.core.windows.net/birthday/siri4.mp4" type="video/mp4">
     </video>
-    <audio id="bgMusic" autoplay loop>
+
+    <audio id="bgMusic" loop>
       <source src="https://birthdaywish.blob.core.windows.net/birthday/HIT3BGM.mp3" type="audio/mpeg">
     </audio>
   </div>
 
   <script>
+    const startBtn = document.getElementById("startBtn");
     const hackingLines = [
       "Initializing system...",
       "Accessing BIOS...",
@@ -116,40 +136,44 @@
       "Finalizing prank..."
     ];
 
-    let i = 0;
-    const hackingDisplay = document.getElementById("hacking-lines");
-    const hackDuration = 8000; 
-    const intervalSpeed = 100; 
+    startBtn.addEventListener('click', () => {
+      startBtn.style.display = "none";
+      document.getElementById("hacking-screen").style.display = "flex";
 
-    const interval = setInterval(() => {
-      const line = hackingLines[i % hackingLines.length];
-      hackingDisplay.innerHTML += line + '\n';
-      i++;
-    }, intervalSpeed);
+      let i = 0;
+      const hackingDisplay = document.getElementById("hacking-lines");
+      const interval = setInterval(() => {
+        const line = hackingLines[i % hackingLines.length];
+        hackingDisplay.innerHTML += line + '\n';
+        i++;
+      }, 100); // fast effect
 
-    setTimeout(() => {
-      clearInterval(interval);
-      document.getElementById("hacking-screen").style.display = "none";
-      document.getElementById("birthday-screen").style.display = "flex";
+      setTimeout(() => {
+        clearInterval(interval);
+        document.getElementById("hacking-screen").style.display = "none";
+        document.getElementById("birthday-screen").style.display = "flex";
 
-      const bgMusic = document.getElementById("bgMusic");
-      const video = document.getElementById("video");
+        const bgMusic = document.getElementById("bgMusic");
+        const video = document.getElementById("video");
 
-      video.muted = false;
+        // Set volume lower
+        bgMusic.volume = 0.3;
+        bgMusic.play();
 
-      video.addEventListener('play', () => {
-        bgMusic.volume = 0.2;
-      });
+        video.addEventListener('play', () => {
+          bgMusic.volume = 0.2;
+        });
 
-      video.addEventListener('pause', () => {
-        bgMusic.volume = 1;
-      });
+        video.addEventListener('pause', () => {
+          bgMusic.volume = 0.5;
+        });
 
-      video.addEventListener('ended', () => {
-        bgMusic.volume = 1;
-      });
+        video.addEventListener('ended', () => {
+          bgMusic.volume = 0.5;
+        });
 
-    }, hackDuration);
+      }, 8000); // Total 8 seconds for fake hacking
+    });
   </script>
 </body>
 </html>
