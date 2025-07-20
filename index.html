@@ -1,1 +1,155 @@
-# Birthday
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For💖You...</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+
+    .screen, .main-content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .screen {
+      background-color: black;
+      color: #00ff00;
+      font-size: 1.1em;
+      white-space: pre-wrap;
+      align-items: flex-start;
+    }
+
+    .main-content {
+      display: none;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffccff);
+      color: #8e24aa;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .images-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      width: 400px;
+    }
+
+    .main-content img {
+      max-width: 250px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    }
+
+    .message {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+
+    .birthday-video {
+      margin-top: 40px;
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HACKING SIMULATION SCREEN -->
+  <div class="screen" id="hacking-screen">
+    <div id="hacking-lines"></div>
+  </div>
+
+  <!-- BIRTHDAY SURPRISE SCREEN -->
+  <div class="main-content" id="birthday-screen">
+    <h1>🎉 Happy Birthday, My Pretty Girl 💖 <b>Sirii 💖</b></h1>
+    <p class="message">🎉You are brighter than every star and more magical than any dream 💫, you are the one whom I think about....💖</p>
+
+    <div class="images-row">
+      <img src="https://birthdaywish.blob.core.windows.net/birthday/siri1.jpg" alt="Photo 1">
+      <img src="https://birthdaywish.blob.core.windows.net/birthday/siri2.jpg" alt="Photo 2">
+      <img src="https://birthdaywish.blob.core.windows.net/birthday/siri3.jpg" alt="Photo 3">
+    </div>
+
+    <video class="birthday-video" id="video" controls autoplay muted>
+      <source src="https://birthdaywish.blob.core.windows.net/birthday/siri4.mp4" muted type="video/mp4">
+    </video>
+    <audio id="bgMusic" autoplay loop>
+      <source src="https://birthdaywish.blob.core.windows.net/birthday/HIT3BGM.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    const hackingLines = [
+      "Initializing system...",
+      "Accessing BIOS...",
+      "Bypassing security protocols...",
+      "Injecting payload...",
+      "IP address traced...",
+      "Access granted ✔",
+      "Root privileges obtained...",
+      "Overriding system commands...",
+      "System lock bypassed...",
+      "Firewall destroyed...",
+      "Stealing cookies 🍪...",
+      "Loading surprise.exe...",
+      "Transferring love files ❤️...",
+      "Hacked by your secret admirer 😘...",
+      "Decrypting her beauty...",
+      "Injecting birthday script...",
+      "Finalizing prank..."
+    ];
+
+    let i = 0;
+    const hackingDisplay = document.getElementById("hacking-lines");
+    const hackDuration = 8000; 
+    const intervalSpeed = 100; 
+
+    const interval = setInterval(() => {
+      const line = hackingLines[i % hackingLines.length];
+      hackingDisplay.innerHTML += line + '\n';
+      i++;
+    }, intervalSpeed);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      document.getElementById("hacking-screen").style.display = "none";
+      document.getElementById("birthday-screen").style.display = "flex";
+
+      const bgMusic = document.getElementById("bgMusic");
+      const video = document.getElementById("video");
+
+      video.muted = false;
+
+      video.addEventListener('play', () => {
+        bgMusic.volume = 0.2;
+      });
+
+      video.addEventListener('pause', () => {
+        bgMusic.volume = 1;
+      });
+
+      video.addEventListener('ended', () => {
+        bgMusic.volume = 1;
+      });
+
+    }, hackDuration);
+  </script>
+</body>
+</html>
